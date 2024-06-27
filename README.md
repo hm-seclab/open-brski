@@ -2,6 +2,7 @@
 
 This repository is intented to hold a BRSKI and BRSKI-PRM reference implementation.
 
+```
  +-----------+     +-----------+       +--------+   +---------+
    | Registrar-|     | Domain    |       | Domain |   | Vendor  |
    | Agent     |     | Registrar |       | CA     |   | Service |
@@ -39,7 +40,7 @@ This repository is intented to hold a BRSKI and BRSKI-PRM reference implementati
        |--- caCerts-Req -->|                  |            |
        |<-- caCerts-Res ---|                  |            |
        |                   |                  |            |
-
+```
 ### Useage
 
 ```
