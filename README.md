@@ -1,6 +1,6 @@
 ### BRSKI(-PRM) Reference Implementation
 
-This repository is intented to hold a BRSKI and BRSKI-PRM reference implementation.
+This repository is intented to hold a BRSKI/[RFC 8995](https://datatracker.ietf.org/doc/rfc8995/) and [BRSKI-PRM](https://datatracker.ietf.org/doc/draft-ietf-anima-brski-prm/) reference implementation.
 
 ```
  +-----------+     +-----------+       +--------+   +---------+
