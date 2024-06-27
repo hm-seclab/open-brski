@@ -63,7 +63,8 @@ Options:
   -V, --version  Print version
 ```
 
-The different commands all take parameters that are needed for running each client. There is also a `Config.toml` in which you can configure `open-brski`
+The different commands all take parameters that are needed for running each client. There is also a `Config.toml` in which you can configure `open-brski`.
+You can start the application with ` cargo run open-brski all`. A simple `get` request onto `<registrar-agent-url>:<registrar-agent-port>/init` starts the process.
 
 ```
 mode = "PRM" # unspecified "other" mode not implemented
@@ -100,6 +101,12 @@ idev_id = "00-D0-E5-F2-00-02"
 This reference implementation can create a voucher from a peusdo-masa, generate domain specific CA certificates from the registrar and generate a domain-valid LDEVID certificate for the pledge. 
 The pledge is a simulated "device" that installs these artifacts into a trust-store prototype. 
 
+#### Features
+- Large portions of the crate can not panic. I intend to make this crate panic free in the future
+- No unsafe code
+- `Tracing` and `Tracing-Tree` support.
+
+
 #### Currently unsupported features and missings
 
 - MASA URI in Pledge idevid certificate is not supported. The MASA uri needs to be set in the configuration file.
@@ -111,3 +118,4 @@ The pledge is a simulated "device" that installs these artifacts into a trust-st
 - A real pledge implementation based on the ESP32-S3 is WIP
 - Pledge discovery is only simulated and not implemented over mDNS
 - This library does currently not support communication over TLS.
+- Each client currently does not verify that the given private key fits the certificate's public key before starting.
