@@ -1,0 +1,13 @@
+[package]
+name = "cli"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.4.7", features = ["derive"] }
+figment = { version = "0.10.19", features = ["toml", "test"] }
+serde.workspace = true
+anyhow.workspace = true
+common.workspace = true

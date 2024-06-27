@@ -1,0 +1,39 @@
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+incremental = true
+
+[workspace.dependencies]
+
+tokio = { version = "1.0", features = ["full", "tracing"] }
+anyhow = "1.0"
+axum = { version = "0.7.5", features = ["macros"]}
+openssl = "0.10.64"
+openssl-sys = "0.9.102"
+serde = { version = "1.0.197", features = ["derive"] }
+serde_bytes = "0.11.14"
+josekit = "0.8.6"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+tower-http = { version = "0.5.2", features = ["trace"]}
+reqwest = { version = "0.11.22", features = ["json"] }
+chrono = "0.4.38"
+
+# Crates
+cli = { path = "./crates/cli" }
+common = { path = "./crates/common" }
+registrar-agent = { path = "./crates/registrar-agent" }
+registrar = { path = "./crates/registrar" }
+example-certs = { path = "./crates/example-certs" }
+ietf-voucher = { path = "./crates/ietf-voucher" }
+brski-prm-artifacts = { path = "./crates/brski-prm-artifacts" }
+pledge = { path = "./crates/pledge" }
+masa ={ path = "./crates/masa" }

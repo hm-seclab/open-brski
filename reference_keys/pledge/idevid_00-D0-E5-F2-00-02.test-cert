@@ -1,0 +1,48 @@
+Certificate:
+       Data:
+           Version: 3 (0x2)
+           Serial Number: 521731815 (0x1f18fee7)
+           Signature Algorithm: ecdsa-with-SHA256
+           Issuer: CN = highway-test.example.com CA
+           Validity
+               Not Before: Apr 27 18:29:30 2021 GMT
+               Not After : Dec 31 00:00:00 2999 GMT
+           Subject: serialNumber = 00-D0-E5-F2-00-02
+           Subject Public Key Info:
+               Public Key Algorithm: id-ecPublicKey
+                   Public-Key: (256 bit)
+                   pub:
+                       04:03:a3:75:43:87:b3:7c:c0:0a:9a:87:9c:ad:f6:
+                       f4:38:13:1c:d4:0c:84:1f:e0:40:4e:41:79:f0:5b:
+                       13:4b:20:71:b3:44:9b:49:62:f1:16:30:ce:bb:00:
+                       7d:80:b1:a7:d9:3b:13:50:9b:a6:27:a5:4f:c3:96:
+                       7f:4c:fe:21:27
+                   ASN1 OID: prime256v1
+                   NIST CURVE: P-256
+           X509v3 extensions:
+               X509v3 Subject Key Identifier:
+                   45:88:CC:96:96:00:64:37:B0:BA:23:65:64:64:54:08:
+                   06:6C:56:AD
+               X509v3 Basic Constraints:
+                   CA:FALSE
+               1.3.6.1.5.5.7.1.32:
+                   ..highway-test.example.com:9443
+       Signature Algorithm: ecdsa-with-SHA256
+            30:65:02:30:62:2a:db:be:34:f7:1b:cb:85:de:26:8e:43:00:
+            f9:0d:88:c8:77:a8:dd:3c:08:40:54:bc:ec:3d:b6:dc:70:2b:
+            c3:7f:ca:19:21:9a:a0:ab:c5:51:8e:aa:df:36:de:8b:02:31:
+            00:b2:5d:59:f8:47:c7:ed:03:97:a8:c0:c7:a8:81:fa:a8:86:
+            ed:67:64:37:51:7a:6e:9c:a3:82:4d:6d:ad:bc:f3:35:9e:9d:
+            6a:a2:6d:7f:7f:25:1c:03:ef:f0:ba:9b:71
+   -----BEGIN CERTIFICATE-----
+   MIIBrzCCATWgAwIBAgIEHxj+5zAKBggqhkjOPQQDAjAmMSQwIgYDVQQDDBtoaWdo
+   d2F5LXRlc3QuZXhhbXBsZS5jb20gQ0EwIBcNMjEwNDI3MTgyOTMwWhgPMjk5OTEy
+   MzEwMDAwMDBaMBwxGjAYBgNVBAUTETAwLUQwLUU1LUYyLTAwLTAyMFkwEwYHKoZI
+   zj0CAQYIKoZIzj0DAQcDQgAEA6N1Q4ezfMAKmoecrfb0OBMc1AyEH+BATkF58FsT
+   SyBxs0SbSWLxFjDOuwB9gLGn2TsTUJumJ6VPw5Z/TP4hJ6NZMFcwHQYDVR0OBBYE
+   FEWIzJaWAGQ3sLojZWRkVAgGbFatMAkGA1UdEwQCMAAwKwYIKwYBBQUHASAEHxYd
+   aGlnaHdheS10ZXN0LmV4YW1wbGUuY29tOjk0NDMwCgYIKoZIzj0EAwIDaAAwZQIw
+   YirbvjT3G8uF3iaOQwD5DYjId6jdPAhAVLzsPbbccCvDf8oZIZqgq8VRjqrfNt6L
+   AjEAsl1Z+EfH7QOXqMDHqIH6qIbtZ2Q3UXpunKOCTW2tvPM1np1qom1/fyUcA+/w
+   uptx
+   -----END CERTIFICATE-----

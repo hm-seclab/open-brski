@@ -1,0 +1,27 @@
+mode = "PRM" # unspecified "other" mode not implemented
+
+[masa]
+ca_certificate = "reference_keys/masa/certificate-authority/vendor-ca.cert"
+ca_key = "reference_keys/masa/certificate-authority/vendor-ca.key"
+masa_certificate = "reference_keys/masa/signing-authority/vendor.cert"
+masa_key = "reference_keys/masa/signing-authority/vendor.key"
+registrar_ee_certificate = "reference_keys/registrar/signing-authority/registrar.cert"
+
+[registrar]
+ca_certificate = "reference_keys/registrar/certificate-authority/registrar-ca.cert"
+ca_key = "reference_keys/registrar/certificate-authority/registrar-ca.key"
+registrar_certificate = "reference_keys/registrar/signing-authority/registrar.cert"
+registrar_key = "reference_keys/registrar/signing-authority/registrar.key"
+reg_agt_ee_cert = "reference_keys/registrar-agent/registrar-agent.cert"
+
+[registrar_agent]
+ee_certificate = "reference_keys/registrar-agent/registrar-agent.cert"
+ee_key = "reference_keys/registrar-agent/registrar-agent.key"
+registrar_certificate = "reference_keys/registrar/certificate-authority/registrar-ca.cert"
+registrar_url = "http://localhost:3001"
+bootstrap_serials = ["00-D0-E5-F2-00-02"]
+
+[pledge]
+idevid_certificate = "reference_keys/pledge/pledge.cert"
+idevid_privkey = "reference_keys/pledge/pledge.key"
+idev_id = "00-D0-E5-F2-00-02"

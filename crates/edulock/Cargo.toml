@@ -1,0 +1,26 @@
+[package]
+name = "edulock"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cli.workspace = true
+registrar-agent.workspace = true
+registrar.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+common.workspace = true
+example-certs.workspace = true
+pledge.workspace = true
+masa.workspace = true
+futures = "0.3.30"
+tracing.workspace = true
+tracing-subscriber.workspace = true
+tracing-forest = { version = "0.1.6", features = ["ansi", "tokio"] }
+
+
+[[bin]]
+name = "edulock"
+path = "src/main.rs"

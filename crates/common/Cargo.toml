@@ -1,0 +1,20 @@
+[package]
+name = "common"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow.workspace = true
+
+hyper = "0.14.27"
+serde.workspace = true
+serde_bytes.workspace = true
+josekit.workspace = true
+thiserror = "1.0.61"
+openssl.workspace = true
+axum = { version = "0.7.5", features = ["macros"]}
+brski-prm-artifacts.workspace = true
+reqwest = { version = "0.11.22", features = ["json"] }
+tracing.workspace = true
