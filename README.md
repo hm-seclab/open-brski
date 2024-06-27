@@ -2,6 +2,9 @@
 
 This repository is intented to hold a BRSKI/[RFC 8995](https://datatracker.ietf.org/doc/rfc8995/) and [BRSKI-PRM](https://datatracker.ietf.org/doc/draft-ietf-anima-brski-prm/) reference implementation.
 
+BRSKI is a secure zero=touch bootstrapping protocol for new devices. BRSKI-PRM is an extension of BRSKI with the added feature of server-mode pledges which only begin the 
+enrollment process when triggered by an agent. 
+
 ```
  +-----------+     +-----------+       +--------+   +---------+
    | Registrar-|     | Domain    |       | Domain |   | Vendor  |
