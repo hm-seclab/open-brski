@@ -23,19 +23,19 @@ impl Default for RegistrarConfig {
         Self {
             port: "3001".to_owned(),
             reg_agt_ee_cert: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar-agent/ee_certificate.pem",
+                "/etc/open-brski/conf/registrar-agent/ee_certificate.pem",
             ),
             ca_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar/certificate-authority/registrar-ca.cert",
+                "/etc/open-brski/conf/registrar/certificate-authority/registrar-ca.cert",
             ),
             ca_key: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar/certificate-authority/registrar-ca.key",
+                "/etc/open-brski/conf/registrar/certificate-authority/registrar-ca.key",
             ),
             registrar_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar/signing-authority/registrar.cert",
+                "/etc/open-brski/conf/registrar/signing-authority/registrar.cert",
             ),
             registrar_key: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar/signing-authority/registrar.key",
+                "/etc/open-brski/conf/registrar/signing-authority/registrar.key",
             ),
             masa_url: "http://localhost:3000".to_owned()
         }

@@ -39,10 +39,10 @@ impl Default for PledgeConfig {
             port: "3002".to_owned(),
             idev_id: "example-pledge-id".to_owned(),
             idevid_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/pledge/idevid_certificate.pem",
+                "/etc/open-brski/conf/pledge/idevid_certificate.pem",
             ),
             idevid_privkey: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar-agent/idevid_privkey.key",
+                "/etc/open-brski/conf/registrar-agent/idevid_privkey.key",
             ),
         }
     }

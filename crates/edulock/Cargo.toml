@@ -1,5 +1,5 @@
 [package]
-name = "edulock"
+name = "open-brski"
 version.workspace = true
 edition.workspace = true
 
@@ -22,5 +22,5 @@ tracing-forest = { version = "0.1.6", features = ["ansi", "tokio"] }
 
 
 [[bin]]
-name = "edulock"
+name = "open-brski"
 path = "src/main.rs"

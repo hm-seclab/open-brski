@@ -48,17 +48,17 @@ impl Default for MasaConfig {
         Self {
             port: "3000".to_owned(),
             ca_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/masa/certificate-authority/vendor-ca.cert",
+                "/etc/open-brski/conf/masa/certificate-authority/vendor-ca.cert",
             ),
             ca_key: RelativePathBuf::from(
-                "/etc/edulock/conf/masa/certificate-authority/vendor-ca.key",
+                "/etc/open-brski/conf/masa/certificate-authority/vendor-ca.key",
             ),
             masa_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/masa/signing-authority/vendor.cert",
+                "/etc/open-brski/conf/masa/signing-authority/vendor.cert",
             ),
-            masa_key: RelativePathBuf::from("/etc/edulock/conf/masa/signing-authority/vendor.key"),
+            masa_key: RelativePathBuf::from("/etc/open-brski/conf/masa/signing-authority/vendor.key"),
             registrar_ee_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar/signing-authority/registrar.cert",
+                "/etc/open-brski/conf/registrar/signing-authority/registrar.cert",
             ),
         }
     }

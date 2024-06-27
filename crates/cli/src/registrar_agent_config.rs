@@ -25,12 +25,12 @@ impl Default for RegistrarAgentConfig {
             autodiscover: false,
             use_tls: false,
             ee_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar-agent/ee_certificate.pem",
+                "/etc/open-brski/conf/registrar-agent/ee_certificate.pem",
             ),
-            ee_key: RelativePathBuf::from("/etc/edulock/conf/registrar-agent/ee_privkey.key"),
+            ee_key: RelativePathBuf::from("/etc/open-brski/conf/registrar-agent/ee_privkey.key"),
             autodiscover_registrar: false,
             registrar_certificate: RelativePathBuf::from(
-                "/etc/edulock/conf/registrar/ee_certificate.pem",
+                "/etc/open-brski/conf/registrar/ee_certificate.pem",
             ),
             registrar_url: "http://localhost:3001".to_owned(),
         }
