@@ -1,0 +1,70 @@
+[package]
+name = "esp32"
+version = "0.1.0"
+authors = ["jkrieger <julian.krieger@hm.edu>"]
+edition = "2021"
+resolver = "2"
+rust-version = "1.77"
+
+[[bin]]
+name = "esp32"
+harness = false # do not use the built in cargo test harness -> resolve rust-analyzer errors
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true    # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+default = ["std", "embassy", "esp-idf-svc/native"]
+
+pio = ["esp-idf-svc/pio"]
+std = ["alloc", "esp-idf-svc/binstart", "esp-idf-svc/std"]
+alloc = ["esp-idf-svc/alloc"]
+nightly = ["esp-idf-svc/nightly"]
+experimental = ["esp-idf-svc/experimental"]
+embassy = ["esp-idf-svc/embassy-sync", "esp-idf-svc/critical-section", "esp-idf-svc/embassy-time-driver"]
+
+[dependencies]
+log = { version = "0.4", default-features = false }
+esp-idf-svc = { version = "0.49", default-features = false }
+anyhow = "1.0.86"
+embedded-svc = "0.28.0"
+heapless = "0.8.0"
+axum = { version = "=0.7.4", default-features = false, features = ["tokio", "http1"] }
+mio = { version = "1.0.0", features = ["log"] }
+tokio = { version = "1.38.0", features = ["rt", "net", "io-util"] }
+esp32-nimble = {git = "https://github.com/taks/esp32-nimble", branch = "main"}
+ietf-voucher = { path = "../crates/ietf-voucher", default-features = false }
+brski-prm-artifacts = { path = "../crates/brski-prm-artifacts", default-features = false }
+pledge-lib ={ path = "../crates/pledge-lib", default-features = false, features = ["clock"]}
+consts = { path = "../crates/consts" }
+chrono = { version = "0.4.38", default-features = false, features = ["std", "now"] }
+rand = "0.8.5"
+serde = "1.0.203"
+serde_json = "1.0.119"
+data-encoding = "2.6.0"
+once_cell = "1.19.0"
+num-bigint = "0.4.6"
+num-traits = "0.2.19"
+
+[target.'cfg(target_os="espidf")'.dependencies]
+ring = { git = "https://github.com/juliankrieger/ring", features = ["less-safe-getrandom-espidf"]  }
+
+[patch.crates-io]
+mio = { git = "https://github.com/tokio-rs/mio", branch = "master" }
+socket2 = { git = "https://github.com/rust-lang/socket2", branch = "master" }
+tokio = { git = "https://github.com/tokio-rs/tokio", branch = "master" }
+
+
+[build-dependencies]
+embuild = "0.32.0"
+
+[package.metadata.esp-idf-sys]
+# this is important. The path to the esp-idf directory
+esp_idf_tools_install_dir = "workspace"
+#esp_idf_sdkconfig = "sdkconfig"
+# idf path will be set by the esp-idf extension
+esp_idf_sdkconfig_defaults = "sdkconfig.defaults"
