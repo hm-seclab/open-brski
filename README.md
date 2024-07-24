@@ -105,7 +105,24 @@ The pledge is a simulated "device" that installs these artifacts into a trust-st
 - Large portions of the crate can not panic. I intend to make this crate panic free in the future
 - No unsafe code
 - `Tracing` and `Tracing-Tree` support.
+- Each component exports its functions as a library. You can implement your own pledge by using `pledge-lib`'s functions.
 
+#### WIP ESP-32 Pledge
+
+A WIP Pledge based on the ESP32 XTENSA/RISC-V architectures can be found in the `esp32` folder. It's a pure Rust firmware binary that handles communication over a Bluetooth LE channel with the registrar and ingoing/outgoing WiFi traffic based on an asynchronous state machine via `Metal I/O` an `tokio`. It uses `ring` to handle SSL/certificate computing.
+
+The ESP32 demo also uses a bespoke JWS implementatin that has been retrofitted from the `biscuit` crate to handle general-syntax JWS tokens with multiple signatures. 
+
+The `ring` crate had to be fit to work on XTENSA architectures. `WolfSSL` and `mbedTLS` did not have mature enough `x509` handling at the time of writing.
+
+`BRSKI`/`EST` tokens tend to be (much) larger than the maximum MTU (512 bytes) of the ESP32 native bluetooth stack. In order to trade packets anyway, they are parsed into multiple MTU sized frames and rebuilt on the registrar-agent and during the NimBLE runtime. 
+
+Currently, only the `PVR` and `PER` routes are supported.
+
+#### WIP Android based Registrar-Agent
+
+A WIP Registrar-Agent implementation can be found in `flutter_app` (for lack of a better name).
+It handles `brski` related functions with an FFI layer from the `registrar-agent` Rust crate. The `registrar-agent` crate is layed out in a way that one can use a custom `PledgeCommunicator`. This allows easy retrofitting of the project to use a registrar agent that can communicate with multiple not-yet-supported protocols like CoAP. Currently, the `flutter_bridge` crate implements a `BLECommunicator` interface, which the Android app uses to facilitate communication with the `ESP32` pledge over bluetooth low energy.
 
 #### Currently unsupported features and missings
 
