@@ -1,0 +1,27 @@
+[package]
+name = "rust_lib_flutter_app"
+version = "0.1.0"
+edition = "2021"
+
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+flutter_rust_bridge = { version = "=2.0.0", features = ["default", "backtrace"] }
+ietf-voucher = { workspace = true }
+registrar-agent = { workspace = true }
+brski-prm-artifacts.workspace = true
+cli ={ workspace = true }
+openssl.workspace = true
+async-trait = "0.1.80"
+common.workspace = true
+dyn-clone = "1.0.17"
+consts.workspace = true
+tracing.workspace = true
+opentelemetry_sdk = "0.23.0"
+opentelemetry = "0.23.0"
+opentelemetry-stdout = "0.4.0"
+tracing-opentelemetry = "0.24.0"
+tracing-subscriber = { workspace = true, features = ["env-filter"]}
+anyhow.workspace = true
