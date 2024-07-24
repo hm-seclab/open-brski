@@ -1,23 +1,15 @@
 use brski_prm_artifacts::cacerts::response::CACERTS_JWS;
-use brski_prm_artifacts::content_type::{JOSE, JWS_VOUCHER};
-use brski_prm_artifacts::ietf_voucher::agent_signed_data;
-use brski_prm_artifacts::ietf_voucher::request_artifact::VoucherRequestArtifact;
-use brski_prm_artifacts::issued_voucher::IssuedVoucherJWS;
-use brski_prm_artifacts::jws::JWS;
-use brski_prm_artifacts::per::response::PER_JWS;
-use brski_prm_artifacts::per::response_payload::ResponsePayload;
-use brski_prm_artifacts::pvr::response::PVR_JWS;
-use brski_prm_artifacts::rer;
+use brski_prm_artifacts::content_type::JOSE;
 use common::server_error::ServerError;
 use tracing::event;
 
 use crate::parsed_config::{ParsedConfig};
 
 
-use reqwest::header::{ACCEPT, CONTENT_TYPE};
+use reqwest::header::CONTENT_TYPE;
 use reqwest::Client;
 
-#[tracing::instrument(skip(client, parsed_config), target = "RegistrarAgent")]
+#[tracing::instrument(skip(client, parsed_config), target = "RegistrarAgent", name = "get_wrappedcacerts_from_registrar")]
 pub async fn get_wrappedcacerts_from_registrar(
     parsed_config: &ParsedConfig,
     client: &Client,
@@ -49,7 +41,7 @@ pub async fn get_wrappedcacerts_from_registrar(
 
     if let Some(content_type) = response.headers().get(CONTENT_TYPE) {
         if content_type != JOSE {
-            return Err(ServerError::BadResponse(format!("Wrong content type in response - Content Type: {}", content_type.to_str().unwrap())))
+            return Err(ServerError::BadResponse(format!("Wrong content type in response - Content Type: {}", content_type.to_str().unwrap_or("Could not parse Content Type"))))
         }
     }
 

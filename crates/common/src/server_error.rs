@@ -54,6 +54,9 @@ pub enum ServerError {
     
     #[error(transparent)]
     ToStrError(#[from] ToStrError),
+
+    #[error(transparent)]
+    SerdeError(#[from] serde_json::Error),
 }
 
 impl IntoResponse for ServerError {
@@ -73,7 +76,8 @@ impl IntoResponse for ServerError {
             Self::ReqwestError { .. } => axum::http::StatusCode::INTERNAL_SERVER_ERROR,
             Self::IoError(_) => axum::http::StatusCode::INTERNAL_SERVER_ERROR,
             Self::BadRequestWithReason(_) => axum::http::StatusCode::BAD_REQUEST,
-            Self::ToStrError(_) => axum::http::StatusCode::BAD_REQUEST
+            Self::ToStrError(_) => axum::http::StatusCode::BAD_REQUEST,
+            Self::SerdeError(_) => axum::http::StatusCode::BAD_REQUEST,
         };
 
         status.into_response()

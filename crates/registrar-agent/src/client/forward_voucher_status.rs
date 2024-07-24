@@ -1,13 +1,4 @@
-use brski_prm_artifacts::cacerts::response::CACERTS_JWS;
-use brski_prm_artifacts::content_type::{JOSE, JWS_VOUCHER, PKCS7};
-use brski_prm_artifacts::ietf_voucher::agent_signed_data;
-use brski_prm_artifacts::ietf_voucher::request_artifact::VoucherRequestArtifact;
-use brski_prm_artifacts::issued_voucher::IssuedVoucherJWS;
-use brski_prm_artifacts::jws::JWS;
-use brski_prm_artifacts::per::response::PER_JWS;
-use brski_prm_artifacts::per::response_payload::ResponsePayload;
-use brski_prm_artifacts::pvr::response::PVR_JWS;
-use brski_prm_artifacts::rer;
+use brski_prm_artifacts::content_type::JOSE;
 use brski_prm_artifacts::status::voucher::response::vStatus_JWS;
 use common::server_error::ServerError;
 use tracing::event;
@@ -15,11 +6,11 @@ use tracing::event;
 use crate::parsed_config::{ParsedConfig};
 
 
-use reqwest::header::{ACCEPT, CONTENT_TYPE};
+use reqwest::header::CONTENT_TYPE;
 use reqwest::Client;
 
 
-#[tracing::instrument(skip(client, parsed_config), target = "RegistrarAgent")]
+#[tracing::instrument(skip(client, parsed_config, voucher_status), target = "RegistrarAgent", name="send_voucher_status_to_registrar")]
 pub async fn send_voucher_status_to_registrar(
     parsed_config: &ParsedConfig,
     voucher_status: vStatus_JWS,

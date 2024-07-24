@@ -1,0 +1,15 @@
+[package]
+name = "pledge-lib"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = ["clock", "brski-prm-artifacts/openssl", "brski-prm-artifacts/json", "brski-prm-artifacts/axum"]
+clock = ["chrono/now", "brski-prm-artifacts/clock"]
+
+[dependencies]
+brski-prm-artifacts = { path = "../brski-prm-artifacts", default-features = false} 
+chrono.workspace = true
+rand = "0.8.5"
+

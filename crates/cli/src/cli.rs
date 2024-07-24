@@ -12,7 +12,7 @@ pub struct Cli {
     pub command: Command,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 pub enum Command {
     RegistrarAgent(NullableRegistrarAgentConfig),
     Registrar(NullableRegistrarConfig),
@@ -22,7 +22,7 @@ pub enum Command {
     All,
     TestCerts,
 }
-#[derive(Serialize, Deserialize, Default)]
+#[derive(Serialize, Deserialize, Default, Debug)]
 pub enum OperatingMode {
     RegistrarAgent,
     Registrar,

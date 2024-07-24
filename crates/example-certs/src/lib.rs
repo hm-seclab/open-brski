@@ -14,7 +14,6 @@ pub struct TestCerts {
     pub pledge: (rcgen::Certificate, rcgen::KeyPair),
 }
 
-#[cfg(feature = "openssl")]
 pub struct OpensslTestCerts {
     pub vendor_ca: (
         openssl::x509::X509,
@@ -120,7 +119,6 @@ pub fn generate_certs() -> TestCerts {
     }
 }
 
-#[cfg(feature = "openssl")]
 fn convert_pair(
     (cert, key): (rcgen::Certificate, rcgen::KeyPair),
 ) -> (
@@ -133,7 +131,6 @@ fn convert_pair(
     (cert, key)
 }
 
-#[cfg(feature = "openssl")]
 impl From<TestCerts> for OpensslTestCerts {
     fn from(value: TestCerts) -> Self {
         OpensslTestCerts {

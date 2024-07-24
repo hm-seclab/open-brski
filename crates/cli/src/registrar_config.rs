@@ -23,7 +23,7 @@ impl Default for RegistrarConfig {
         Self {
             port: "3001".to_owned(),
             reg_agt_ee_cert: RelativePathBuf::from(
-                "/etc/open-brski/conf/registrar-agent/ee_certificate.pem",
+                "/etc/open-brski/conf/registrar-agent/ee_certificate.cert",
             ),
             ca_certificate: RelativePathBuf::from(
                 "/etc/open-brski/conf/registrar/certificate-authority/registrar-ca.cert",
@@ -67,7 +67,7 @@ impl Validate for RegistrarConfig {
     }
 }
 
-#[derive(Args, Serialize, Deserialize)]
+#[derive(Args, Serialize, Deserialize, Debug)]
 pub struct NullableRegistrarConfig {
     #[arg(short, long)]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -88,4 +88,7 @@ pub struct NullableRegistrarConfig {
     #[clap(value_parser = parse_relative_path_buf)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub masa_key: Option<RelativePathBuf>,
+    #[arg(long)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub masa_url: Option<String>
 }

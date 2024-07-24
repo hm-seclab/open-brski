@@ -14,7 +14,6 @@ use common::{
 };
 use tracing::{event, Level};
 
-use crate::parsed_config::ParsedConfig;
 use crate::server::ServerState;
 
 #[tracing::instrument(target = "Pledge", skip(state, headers, payload))]

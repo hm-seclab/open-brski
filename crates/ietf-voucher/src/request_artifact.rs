@@ -174,7 +174,13 @@ impl fmt::Debug for VoucherRequestArtifactDetails {
             .field("expires_on", &self.expires_on)
             .field("assertion", &self.assertion)
             .field("serial_number", &self.serial_number)
-            .field("idevid_issuer", &format!("{} bytes", self.idevid_issuer.as_ref().map(|v| v.len()).unwrap_or(0)))
+            .field(
+                "idevid_issuer",
+                &format!(
+                    "{} bytes",
+                    self.idevid_issuer.as_ref().map(|v| v.len()).unwrap_or(0)
+                ),
+            )
             .field("pinned_domain_cert", &self.pinned_domain_cert)
             .field(
                 "domain_cert_revocation_checks",
@@ -188,7 +194,13 @@ impl fmt::Debug for VoucherRequestArtifactDetails {
             .field("additional_configuration", &self.additional_configuration)
             .field(
                 "prior_signed_voucher_request",
-                &format!("{} bytes", self.prior_signed_voucher_request.as_ref().map(|v| v.len()).unwrap_or(0)),
+                &format!(
+                    "{} bytes",
+                    self.prior_signed_voucher_request
+                        .as_ref()
+                        .map(|v| v.len())
+                        .unwrap_or(0)
+                ),
             )
             .field("proximity_registrar_cert", &self.proximity_registrar_cert)
             .field("proximity_registrar_pubk", &self.proximity_registrar_pubk)

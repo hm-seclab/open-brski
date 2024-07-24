@@ -13,7 +13,10 @@ pub struct X509Req {
 impl Clone for X509Req {
     fn clone(&self) -> Self {
         let csr = openssl::x509::X509Req::from_der(&self.der).unwrap();
-        X509Req { csr, der: self.der.clone() }
+        X509Req {
+            csr,
+            der: self.der.clone(),
+        }
     }
 }
 
@@ -22,11 +25,20 @@ impl Eq for X509Req {}
 impl std::fmt::Debug for X509Req {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("X509Req")
-            .field("csr", &format!("{}", String::from_utf8(self.csr.to_text().unwrap()).unwrap()))
-            .field("der", &format!(
-                "DER-encoded X.509 certificate with length {}",
-                self.der.len()
-            ))
+            .field(
+                "csr",
+                &format!(
+                    "{}",
+                    String::from_utf8(self.csr.to_text().unwrap()).unwrap()
+                ),
+            )
+            .field(
+                "der",
+                &format!(
+                    "DER-encoded X.509 certificate with length {}",
+                    self.der.len()
+                ),
+            )
             .finish()
     }
 }

@@ -1,13 +1,10 @@
-#[cfg(feature = "json")]
-use josekit::jws::JwsHeader;
-#[cfg(feature = "json")]
-use josekit::jws::{self, ES256};
+#[cfg(feature = "jws")]
+use josekit::jws::{self, JwsHeader, ES256};
 
+use crate::error::VoucherError;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIs};
-
-use crate::error::VoucherError;
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 #[serde(rename_all = "kebab-case")]
@@ -33,35 +30,35 @@ pub enum AgentSignedData {
     // This variant can not be serialized automatically. It can only be returned
     // from the decode API
     #[serde(skip)]
-    Decoded(Payload),
-    Encoded(String),
+    Unsigned(Payload),
+    Signed(String),
 }
 
 impl AgentSignedData {
     pub fn new(created_on: DateTime<Utc>, serial_number: impl Into<String>) -> Self {
-        AgentSignedData::Decoded(Payload {
+        AgentSignedData::Unsigned(Payload {
             data: AgentData {
                 created_on,
                 serial_number: serial_number.into(),
             },
         })
     }
-    #[cfg(feature = "json")]
+    #[cfg(feature = "jws")]
     // Encode AgentSignedData into String
     // Noop if it already is encoded
-    pub fn encode(
+    pub fn sign(
         self,
         skid: impl Into<String>,
         keypair: impl AsRef<[u8]>,
     ) -> Result<AgentSignedData, VoucherError> {
         // noop if already encoded
-        if let AgentSignedData::Encoded(_) = self {
+        if let AgentSignedData::Signed(_) = self {
             return Ok(self);
         }
 
         let data = match self {
-            AgentSignedData::Decoded(data) => data,
-            AgentSignedData::Encoded(_) => unreachable!(),
+            AgentSignedData::Unsigned(data) => data,
+            AgentSignedData::Signed(_) => unreachable!(),
         };
 
         let mut header = JwsHeader::new();
@@ -80,20 +77,20 @@ impl AgentSignedData {
 
         let serialized_jws = jws::serialize_compact(&serialized, &header, &signer)?;
 
-        Ok(AgentSignedData::Encoded(serialized_jws))
+        Ok(AgentSignedData::Signed(serialized_jws))
     }
 
-    #[cfg(feature = "json")]
+    #[cfg(feature = "jws")]
     // Decode into AgentSignedData if encoded. Noop if already decoded.
-    pub fn decode(self, public_key: impl AsRef<[u8]>) -> Result<AgentSignedData, VoucherError> {
+    pub fn verify(self, public_key: impl AsRef<[u8]>) -> Result<AgentSignedData, VoucherError> {
         // noop if already decoded
-        if let AgentSignedData::Decoded(_) = self {
+        if let AgentSignedData::Unsigned(_) = self {
             return Ok(self);
         }
 
         let data = match self {
-            AgentSignedData::Encoded(data) => data,
-            AgentSignedData::Decoded(_) => unreachable!(),
+            AgentSignedData::Signed(data) => data,
+            AgentSignedData::Unsigned(_) => unreachable!(),
         };
 
         let verifier = ES256.verifier_from_der(public_key)?;
@@ -106,29 +103,31 @@ impl AgentSignedData {
             )
         })?;
 
-        Ok(AgentSignedData::Decoded(data))
+        Ok(AgentSignedData::Unsigned(data))
     }
 }
 
 impl AsRef<[u8]> for AgentSignedData {
     fn as_ref(&self) -> &[u8] {
         match self {
-            AgentSignedData::Decoded(_) => unreachable!(), // Serde skips this variant, so it should never be reachable.
-            AgentSignedData::Encoded(data) => data.as_bytes(),
+            AgentSignedData::Unsigned(_) => unreachable!(), // Serde skips this variant, so it should never be reachable.
+            AgentSignedData::Signed(data) => data.as_bytes(),
         }
     }
 }
 
 impl From<Vec<u8>> for AgentSignedData {
     fn from(data: Vec<u8>) -> Self {
-        AgentSignedData::Encoded(String::from_utf8_lossy(&data).to_string())
+        AgentSignedData::Signed(String::from_utf8_lossy(&data).to_string())
     }
 }
 
 #[cfg(test)]
 #[cfg(feature = "openssl")]
-#[cfg(feature = "json")]
+#[cfg(feature = "jws")]
 mod tests {
+    use crate::error::VoucherError;
+
     use super::*;
     use example_certs::OpensslTestCerts;
 
@@ -146,22 +145,22 @@ mod tests {
             serial_number: serial_number.clone(),
         };
 
-        let asd = AgentSignedData::Decoded(Payload { data });
+        let asd = AgentSignedData::Unsigned(Payload { data });
 
         let (reg_agt_ee_cert, reg_agt_ee_kp) = certs.registrar_agent.clone();
 
         let encoded_key = reg_agt_ee_kp.private_key_to_der().unwrap();
 
-        let encoded = asd.encode("test".to_string(), encoded_key).unwrap();
+        let encoded = asd.sign("test".to_string(), encoded_key).unwrap();
 
         let _encoded_data = match encoded.clone() {
-            AgentSignedData::Encoded(data) => data,
+            AgentSignedData::Signed(data) => data,
             _ => unreachable!(),
         };
 
         // this should only work if the signature holds
         let decoded = encoded
-            .decode(
+            .verify(
                 reg_agt_ee_cert
                     .public_key()
                     .unwrap()
@@ -170,9 +169,9 @@ mod tests {
             )
             .unwrap();
 
-        assert!(matches!(decoded, AgentSignedData::Decoded(_)));
+        assert!(matches!(decoded, AgentSignedData::Unsigned(_)));
 
-        if let AgentSignedData::Decoded(decoded_data) = decoded {
+        if let AgentSignedData::Unsigned(decoded_data) = decoded {
             assert_eq!(decoded_data.data.created_on, created_on);
             assert_eq!(decoded_data.data.serial_number, serial_number);
         }
@@ -188,11 +187,11 @@ mod tests {
             serial_number: serial_number.clone(),
         };
 
-        let asd = AgentSignedData::Decoded(Payload { data });
+        let asd = AgentSignedData::Unsigned(Payload { data });
 
         let encoded_key = vec![];
 
-        let encoded = asd.encode("test".to_string(), encoded_key);
+        let encoded = asd.sign("test".to_string(), encoded_key);
 
         assert!(matches!(encoded, Err(VoucherError::JWSError(_))));
     }
@@ -211,17 +210,17 @@ mod tests {
             serial_number: serial_number.clone(),
         };
 
-        let asd = AgentSignedData::Decoded(Payload { data });
+        let asd = AgentSignedData::Unsigned(Payload { data });
 
         let (_reg_agt_ee_cert, reg_agt_ee_kp) = certs.registrar_agent.clone();
 
         let encoded_key = reg_agt_ee_kp.private_key_to_der().unwrap();
 
-        let encoded = asd.encode("test".to_string(), encoded_key).unwrap();
+        let encoded = asd.sign("test".to_string(), encoded_key).unwrap();
 
         // this should only work if the signature holds
         let decoded = encoded
-            .decode(
+            .verify(
                 certs
                     .pledge
                     .0

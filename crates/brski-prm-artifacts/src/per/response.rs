@@ -1,14 +1,7 @@
-
-use axum::http::header::CONTENT_TYPE;
-use axum::http::StatusCode;
-use axum::response::IntoResponse;
-
 use ietf_voucher::pki::X509;
-
 use crate::content_type;
-use crate::jws::{DecodedJWS, JWS};
+use crate::jws::JWS;
 use crate::per::response_payload::ResponsePayload;
-use josekit::jws::{self, JwsHeaderSet};
 
 #[derive(Debug)]
 pub struct Response {
@@ -18,15 +11,16 @@ pub struct Response {
 
 pub type PER_JWS = JWS<ResponsePayload>;
 
-impl IntoResponse for PER_JWS {
+#[cfg(feature = "axum")]
+impl axum::response::IntoResponse for PER_JWS {
     fn into_response(self) -> axum::response::Response {
         match self {
             JWS::Encoded(encoded) => axum::response::Response::builder()
-                .header(CONTENT_TYPE, content_type::JOSE)
+                .header(axum::http::header::CONTENT_TYPE, content_type::JOSE)
                 .body(encoded.into())
                 .unwrap(),
             JWS::Decoded(decoded) => (
-                StatusCode::INTERNAL_SERVER_ERROR,
+                axum::http::StatusCode::INTERNAL_SERVER_ERROR,
                 "Server attempted to send a JWS that was not encoded".to_string(),
             )
                 .into_response(),
@@ -34,13 +28,14 @@ impl IntoResponse for PER_JWS {
     }
 }
 
+#[cfg(feature = "json")]
 impl TryFrom<Response> for PER_JWS {
     type Error = josekit::JoseError;
 
     fn try_from(value: Response) -> Result<Self, Self::Error> {
-        let mut header_set = JwsHeaderSet::new();
+        let mut header_set = josekit::jws::JwsHeaderSet::new();
         header_set.set_x509_certificate_chain(&value.pledge_idevid_certs, true);
-        header_set.set_algorithm(jws::ES256.to_string(), true);
+        header_set.set_algorithm(josekit::jws::ES256.to_string(), true);
         header_set.set_critical(&["created-on"].to_vec());
         header_set.set_claim(
             "created-on",
@@ -48,7 +43,7 @@ impl TryFrom<Response> for PER_JWS {
             true,
         )?;
 
-        let jws = JWS::Decoded(DecodedJWS {
+        let jws = JWS::Decoded(crate::jws::DecodedJWS {
             payload: value.payload,
             header_set: Some(header_set),
             header: None,

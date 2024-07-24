@@ -1,5 +1,5 @@
 use crate::{
-    parsed_config::{ParsedConfig},
+    parsed_config::ParsedConfig, pledge_communicator::{http_communicator::HTTPCommunicator, PledgeCommunicator},
 };
 use axum::{Router};
 use common::error::AppError;
@@ -8,19 +8,34 @@ use tower_http::trace::TraceLayer;
 
 use super::handlers::brski_routes;
 
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct ServerState {
     pub config: ParsedConfig,
     pub client: reqwest::Client,
+    pub communicator: Box<dyn PledgeCommunicator>
+}
+
+fn get_server_state(config: &ParsedConfig) -> anyhow::Result<ServerState, AppError> {
+    let client = Client::new();
+
+    Ok(ServerState {
+        config: config.clone(),
+        client: client.clone(),
+        communicator: Box::new(HTTPCommunicator::new(client))
+    })
+}
+
+pub fn get_state(config: &ParsedConfig, communicator: Box<dyn PledgeCommunicator>) -> anyhow::Result<ServerState, AppError> {
+    Ok(ServerState {
+        config: config.clone(),
+        client: Client::new(),
+        communicator
+    })
 }
 
 pub async fn get_app(config: &ParsedConfig) -> anyhow::Result<Router<()>, AppError> {
-    let client = Client::new();
-
-    let state = ServerState {
-        config: config.clone(),
-        client: client.clone(),
-    };
+    
+    let state = get_server_state(config)?;
 
     let routes = Router::new().nest("/.well-known/brski", brski_routes());
 

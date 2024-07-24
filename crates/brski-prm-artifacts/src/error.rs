@@ -10,12 +10,14 @@ pub enum BRSKIPRMError {
     ExpectedDecodedData,
     #[error("Missing registrar agent ee certificate subject key identifier")]
     MissingRegAgtCertSKID,
+    #[cfg(feature = "openssl")]
     #[error(transparent)]
     OpensslError {
         #[from]
         source: openssl::error::ErrorStack,
     },
 
+    #[cfg(feature = "json")]
     #[error(transparent)]
     JWSError(#[from] josekit::JoseError),
 

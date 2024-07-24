@@ -4,8 +4,6 @@ version.workspace = true
 edition.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-[features]
-default = ["example-certs/openssl"]
 
 [dependencies]
 tokio.workspace = true
@@ -16,11 +14,12 @@ common.workspace = true
 brski-prm-artifacts.workspace = true 
 chrono.workspace = true
 openssl.workspace = true
-openssl-sys.workspace = true
 cli.workspace = true
 axum.workspace = true
 tracing.workspace = true
 tower-http.workspace = true
+pledge-lib.workspace = true
+
 rand = "0.8.5"
 tower = "0.4.13"
 

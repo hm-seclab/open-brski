@@ -34,7 +34,7 @@ pub enum VoucherError {
     #[error("Invalid Expiry (expires after created)")]
     MalformedAgentSignedData(String),
 
-    #[cfg(feature = "json")]
+    #[cfg(feature = "jws")]
     #[error("JWS error")]
     JWSError(#[from] josekit::JoseError),
 }

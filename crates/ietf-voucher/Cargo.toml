@@ -13,14 +13,15 @@ readme = "README.md"
 
 [features]
 default = ["chrono/now", "openssl", "json"]
-json = ["serde_json", "josekit"]
+jws = ["dep:josekit", "json"]
+json = ["dep:serde_json"]
 clock = ["chrono/now"]
 openssl = ["dep:openssl"]
+ring = ["dep:ring", "dep:x509-parser"]
 
 [dependencies]
 serde = { version = "1.0.197", features = ["derive"] }
-openssl = {version = "0.10.64", optional = true}
-openssl-sys = "0.9.102"
+openssl = {version = "0.10.64", optional = true, features = ["vendored"]}
 
 chrono = { version = "0.4.37", features = ["serde", "now"] }
 readonly = "0.2.12"
@@ -29,6 +30,9 @@ strum = { version = "0.26.2", features = ["derive"] }
 thiserror = "1.0.58"
 serde_with = { version = "3.8.1", features = ["base64"] }
 josekit = { version = "0.8.6", optional = true}
+x509-parser = { version = "0.16.0", features = ["verify"], optional = true }
+base64 = "0.22.1"
+ring = { version = "0.17.8", optional = true }
 
 [dev-dependencies]
-example-certs = { path = "../example-certs", features = ["openssl"] }
+example-certs = { path = "../example-certs" }

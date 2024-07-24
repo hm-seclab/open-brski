@@ -13,9 +13,8 @@ use common::{
 };
 use tracing::event;
 
-use crate::parsed_config::ParsedConfig;
-use crate::server::ServerState;
-
+use crate::{server::ServerState};
+use pledge_lib::tpvr::create_pvr;
 // We don't trust client's to supply just any base64 encoded data, so we parse it.
 #[tracing::instrument(target = "Pledge", skip(state, headers, payload))]
 #[axum::debug_handler]
@@ -45,35 +44,10 @@ pub async fn handle_tpvr(
 
     event!(tracing::Level::INFO, "Building tPVR response");
 
-    let created_on = chrono::Utc::now();
+    let voucher_request = create_pvr(payload, state.read().await.config.config.idev_id.clone());
+    event!(tracing::Level::INFO, "Timestamp: {:?}", voucher_request.details.created_on);
+    event!(tracing::Level::INFO, "Nonce: {:?}", voucher_request.details.nonce);
 
-    event!(tracing::Level::INFO, "Timestamp: {:?}", created_on);
-
-    let nonce = rand::random::<u32>();
-
-    event!(tracing::Level::INFO, "Nonce: {:?}", nonce);
-
-    let serial_number = state.read().await.config.config.idev_id.clone();
-
-    let requested_assertion =
-        brski_prm_artifacts::ietf_voucher::assertion::Assertion::AgentProximity;
-
-    let mut voucher_request_details =
-        brski_prm_artifacts::ietf_voucher::request_artifact::VoucherRequestArtifactDetails::default(
-        );
-
-    voucher_request_details.created_on = Some(created_on);
-    voucher_request_details.nonce = Some(nonce.to_string().into_bytes());
-    voucher_request_details.serial_number = serial_number;
-    voucher_request_details.assertion = Some(requested_assertion);
-    voucher_request_details.agent_provided_proximity_registrar_cert =
-        Some(payload.agent_signed_proximity_cert);
-    voucher_request_details.agent_signed_data = Some(payload.agent_signed_data);
-
-    let voucher_request =
-        brski_prm_artifacts::ietf_voucher::request_artifact::VoucherRequestArtifact {
-            details: voucher_request_details,
-        };
 
     event!(tracing::Level::INFO, "Built Voucher Request");
     event!(tracing::Level::DEBUG, "Voucher Request: {:#?}", voucher_request);

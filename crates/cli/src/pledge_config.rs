@@ -48,7 +48,7 @@ impl Default for PledgeConfig {
     }
 }
 
-#[derive(Args, Serialize, Deserialize)]
+#[derive(Args, Serialize, Deserialize, Debug)]
 pub struct NullablePledgeConfig {
     #[arg(short, long)]
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -7,24 +7,13 @@ use serde_with::base64::Base64;
 
 use crate::assertion::Assertion;
 use crate::error::VoucherError;
-use crate::target::PledgeValidityInfo;
-use crate::target::VoucherTarget;
-use crate::verified::VerifiedVoucher;
+use crate::target::ValidityCtx;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 pub struct VoucherArtifact {
     #[serde(rename = "ietf-voucher:voucher")]
     pub details: VoucherArtifactDetails,
-}
-
-impl VoucherArtifact {
-    #[cfg(feature = "openssl")]
-    pub fn verify(self, verify_for: VoucherTarget) -> Result<VerifiedVoucher, VoucherError> {
-        self.details.verify(verify_for)?;
-
-        Ok(VerifiedVoucher(self))
-    }
 }
 
 /// An unparsed voucher artifact which can be converted into a Voucher using the From trait
@@ -123,7 +112,10 @@ impl std::fmt::Debug for VoucherArtifactDetails {
             .field("serial_number", &self.serial_number)
             .field("idevid_issuer", &self.idevid_issuer)
             .field("pinned_domain_cert", &self.pinned_domain_cert)
-            .field("domain_cert_revocation_checks", &self.domain_cert_revocation_checks)
+            .field(
+                "domain_cert_revocation_checks",
+                &self.domain_cert_revocation_checks,
+            )
             .field("nonce", &self.nonce)
             .field("pinned_domain_pubk", &self.pinned_domain_pubk)
             .field("pinned_domain_pubk_sha256", &self.pinned_domain_pubk_sha256)
@@ -137,7 +129,7 @@ impl std::fmt::Debug for VoucherArtifactDetails {
 #[cfg(feature = "openssl")]
 impl VoucherArtifactDetails {
     /// Verifies the voucher for the given target. Vouchers without expiry date *and* without nonces are valid in this context. MASA services must make sure to make an informed security decision.
-    fn verify(&self, verify_for: VoucherTarget) -> Result<(), VoucherError> {
+    fn verify(&self, validity_information: Option<ValidityCtx>) -> Result<(), VoucherError> {
         if self.expires_on.is_some()
             && self.created_on.is_some()
             && self.expires_on < self.created_on
@@ -155,15 +147,12 @@ impl VoucherArtifactDetails {
         }
 
         // If the voucher is for a pledge and it features an expiry date, there must be a sufficient clock present.
-        if cfg!(not(feature = "clock"))
-            && self.expires_on.is_some()
-            && matches!(verify_for, VoucherTarget::Pledge(_))
-        {
+        if cfg!(not(feature = "clock")) && self.expires_on.is_some() {
             return Err(VoucherError::ClockRequired);
         }
 
         // If the pledge has a clock the expiry must not have passed.
-        if cfg!(feature = "clock") && matches!(verify_for, VoucherTarget::Pledge(_)) {
+        if cfg!(feature = "clock") {
             if let Some(expires_on) = self.expires_on {
                 let time_now = chrono::Utc::now();
                 // todo this is much too naive. We should check if the pledge has for example only seconds left...
@@ -173,13 +162,12 @@ impl VoucherArtifactDetails {
             }
         }
 
+        if let Some(ctx) = validity_information {
+            self.verify_for_ctx(&ctx)?;
+        }
+
         // only verify certificates if the openssl feature is passed
         self.verify_certificates()?;
-
-        // There are currently only specific steps to be taken if the voucher is processed by a pledge.
-        if let VoucherTarget::Pledge(ref pvi) = verify_for {
-            self.verify_for_pledge(pvi)?;
-        }
 
         Ok(())
     }
@@ -202,18 +190,20 @@ impl VoucherArtifactDetails {
     }
 
     // Verifies the voucher for a pledge.
-    fn verify_for_pledge(&self, pvi: &PledgeValidityInfo) -> Result<(), VoucherError> {
+    fn verify_for_ctx(&self, ctx: &ValidityCtx) -> Result<(), VoucherError> {
         if self.pinned_domain_cert.is_none() {
             return Err(VoucherError::MissingPinnedDomainCert);
         }
 
         // The voucher's serial must match the pledge's serial
-        if pvi.serial != self.serial_number {
-            return Err(VoucherError::SerialMismatch);
+        if let Some(serial) = ctx.serial {
+            if serial != self.serial_number {
+                return Err(VoucherError::SerialMismatch);
+            }
         }
 
         // If the voucher artifact features an idevid issuer field, the pledge must provide the idevid issuer auth key id for verification. This key should be present in its IdevID certificate.
-        if self.idevid_issuer.is_some() && pvi.idevid_isser_kid.is_none() {
+        if self.idevid_issuer.is_some() && ctx.idevid_isser_kid.is_none() {
             return Err(VoucherError::IssuerKidRequired);
         }
 
@@ -223,13 +213,13 @@ impl VoucherArtifactDetails {
         }
 
         // If the voucher artifact features a nonce, the pledge must supply a nonce as well for verification proccesses.
-        if self.nonce.is_some() && pvi.nonce.is_none() {
+        if self.nonce.is_some() && ctx.nonce.is_none() {
             return Err(VoucherError::NonceRequired);
         }
 
         // If both are present, the nonces must match.
         if let Some(nonce) = &self.nonce {
-            if let Some(pvi_nonce) = pvi.nonce {
+            if let Some(pvi_nonce) = ctx.nonce {
                 // TODO not sure if this works!
                 let converted_nonce: Vec<u8> = pvi_nonce.into();
                 if *nonce != converted_nonce {
@@ -248,7 +238,7 @@ mod tests {
     use crate::{artifact::VoucherArtifact, assertion::Assertion};
 
     #[cfg(feature = "openssl")]
-    #[cfg(feature = "json")]
+    #[cfg(feature = "jws")]
     #[test]
     /// Tests an invalid voucher who has a nonce and an expires_on field
     fn invalid_voucher_nonce_and_expires() {
@@ -269,13 +259,13 @@ mod tests {
 
         let voucher_artifact = serde_json::from_str::<VoucherArtifact>(&deserialized).unwrap();
 
-        let res = voucher_artifact.verify(super::VoucherTarget::Other);
+        let res = voucher_artifact.details.verify(None);
         assert!(res.is_err());
     }
 
     #[test]
     #[cfg(feature = "openssl")]
-    #[cfg(feature = "json")]
+    #[cfg(feature = "jws")]
     /// Tests an invalid voucher whose expires_on date is earlier than the created_on date
     fn test_invalid_voucher_dates() {
         let voucher_request_json = r#"
@@ -291,16 +281,14 @@ mod tests {
         let voucher_artifact =
             serde_json::from_str::<VoucherArtifact>(voucher_request_json).unwrap();
 
-        let res = voucher_artifact.verify(super::VoucherTarget::Other);
+        let res = voucher_artifact.details.verify(None);
         assert!(res.is_err());
     }
 
     #[test]
-    #[cfg(feature = "clock")]
-    #[cfg(feature = "openssl")]
-    #[cfg(feature = "json")]
+    #[cfg(all(feature = "clock", feature = "openssl", feature = "clock"))]
     fn test_expires_on_in_the_past() {
-        use crate::target::VoucherTarget;
+        use crate::target::{ValidityCtx};
 
         let voucher_request_json = r#"
         {
@@ -314,16 +302,14 @@ mod tests {
         let voucher_artifact =
             serde_json::from_str::<VoucherArtifact>(voucher_request_json).unwrap();
 
-        let res = voucher_artifact.verify(VoucherTarget::Other);
+        let res = voucher_artifact.details.verify(Some(ValidityCtx::default()));
         assert!(res.is_err());
     }
 
     #[test]
-    #[cfg(feature = "openssl")]
-    #[cfg(not(feature = "clock"))]
-    #[cfg(feature = "json")]
+    #[cfg(all(feature = "openssl", feature = "jws", feature = "clock"))]
     fn test_feature_no_clock_error() {
-        use crate::target::{PledgeValidityInfo, VoucherTarget};
+        use crate::target::{ValidityCtx};
 
         let voucher_request_json = r#"
         {
@@ -337,8 +323,8 @@ mod tests {
         let voucher_artifact =
             serde_json::from_str::<VoucherArtifact>(voucher_request_json).unwrap();
 
-        let res = voucher_artifact.verify(VoucherTarget::Pledge(PledgeValidityInfo {
-            serial: "JADA123456789",
+        let res = voucher_artifact.details.verify(Some(ValidityCtx {
+            serial: Some("JADA123456789"),
             idevid_isser_kid: None,
             nonce: None,
         }));
@@ -347,7 +333,7 @@ mod tests {
 
     #[test]
     #[cfg(feature = "openssl")]
-    #[cfg(feature = "json")]
+    #[cfg(feature = "jws")]
     fn test_voucher_serializes_correctly() {
         let voucher = VoucherArtifact {
             details: VoucherArtifactDetails {

@@ -40,23 +40,23 @@ impl Default for RegistrarAgentConfig {
 impl Validate for RegistrarAgentConfig {
     fn validate(&self) -> anyhow::Result<()> {
         if self.port.is_empty() {
-            return Err(anyhow!("Port cannot be empty".to_owned()));
+            return Err(anyhow!("registrar-agent: Port cannot be empty".to_owned()));
         }
 
         if !self.ee_certificate.relative().exists() {
-            return Err(anyhow!("ee_certificate is empty or not exist".to_owned()));
+            return Err(anyhow!("registrar-agent: ee_certificate is empty or not exist".to_owned()));
         }
         if !self.ee_key.relative().exists() {
-            return Err(anyhow!("ee_privkey is empty or does not exist".to_owned()));
+            return Err(anyhow!("registrar-agent: ee_privkey is empty or does not exist".to_owned()));
         }
 
         if !self.autodiscover_registrar && !self.registrar_certificate.relative().exists() {
-            return Err(anyhow!("You need to either set autodiscover_registrar or provide the registrar's ee certificate".to_owned()));
+            return Err(anyhow!("registrar-agent: You need to either set autodiscover_registrar or provide the registrar's ee certificate".to_owned()));
         }
 
         if self.autodiscover_registrar {
             return Err(anyhow!(
-                "autodiscover_registrar is not implemented yet".to_owned()
+                "registrar-agent: autodiscover_registrar is not implemented yet".to_owned()
             ));
         }
 
@@ -64,7 +64,7 @@ impl Validate for RegistrarAgentConfig {
     }
 }
 
-#[derive(Args, Serialize, Deserialize)]
+#[derive(Args, Serialize, Deserialize, Debug)]
 pub struct NullableRegistrarAgentConfig {
     #[arg(short, long)]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -94,7 +94,6 @@ pub struct NullableRegistrarAgentConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub registrar_certificate: Option<RelativePathBuf>,
     #[arg(long)]
-    #[clap(value_parser = parse_relative_path_buf)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub registrar_url: Option<String>,
 }

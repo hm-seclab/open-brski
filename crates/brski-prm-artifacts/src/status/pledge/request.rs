@@ -1,7 +1,5 @@
-use josekit::jws::{self, JwsHeaderSet};
-
 use crate::error::BRSKIPRMError;
-use crate::jws::{DecodedJWS, JWS};
+use crate::jws::JWS;
 
 use ietf_voucher::pki::X509;
 
@@ -14,16 +12,17 @@ pub struct Request {
 
 pub type StatusQueryJWS = JWS<StatusQuery>;
 
+#[cfg(feature = "json")]
 impl TryFrom<Request> for JWS<StatusQuery> {
     type Error = BRSKIPRMError;
 
     fn try_from(value: Request) -> Result<Self, Self::Error> {
-        let mut header_set = JwsHeaderSet::new();
+        let mut header_set = josekit::jws::JwsHeaderSet::new();
         header_set.set_x509_certificate_chain(&value.reg_agt_ee_certs, true);
-        header_set.set_algorithm(jws::ES256.to_string(), true);
+        header_set.set_algorithm(josekit::jws::ES256.to_string(), true);
         header_set.set_token_type("voucher-jws+json", false);
 
-        let jws = JWS::Decoded(DecodedJWS {
+        let jws = JWS::Decoded(crate::jws::DecodedJWS {
             payload: value.status,
             header_set: Some(header_set),
             header: None,

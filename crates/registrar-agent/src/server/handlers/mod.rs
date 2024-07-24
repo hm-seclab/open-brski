@@ -1,6 +1,6 @@
 mod init;
 use axum::{routing::post, Router};
-
+pub use init::bootstrap_pledge;
 
 use super::server::ServerState;
 

@@ -1,13 +1,16 @@
-pub struct PledgeValidityInfo<'a> {
-    pub serial: &'a str,
+#[derive(Debug, Clone)]
+pub struct ValidityCtx<'a> {
+    pub serial: Option<&'a str>,
     pub idevid_isser_kid: Option<&'a str>,
     pub nonce: Option<&'a str>,
 }
 
-pub enum VoucherTarget<'a> {
-    MASA,
-    Pledge(PledgeValidityInfo<'a>),
-    Registrar,
-    RegistrarAgent,
-    Other,
+impl core::default::Default for ValidityCtx<'_> {
+    fn default() -> Self {
+        Self {
+            serial: None,
+            idevid_isser_kid: None,
+            nonce: None,
+        }
+    }
 }

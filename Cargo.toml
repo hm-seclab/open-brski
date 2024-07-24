@@ -37,3 +37,5 @@ ietf-voucher = { path = "./crates/ietf-voucher" }
 brski-prm-artifacts = { path = "./crates/brski-prm-artifacts" }
 pledge = { path = "./crates/pledge" }
 masa ={ path = "./crates/masa" }
+consts = { path = "./crates/consts" }
+pledge-lib = { path = "./crates/pledge-lib" }

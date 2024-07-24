@@ -13,7 +13,11 @@ pub struct X509 {
 
 impl std::fmt::Display for X509 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", String::from_utf8(self.certificate.to_pem().unwrap()).unwrap())
+        write!(
+            f,
+            "{}",
+            String::from_utf8(self.certificate.to_pem().unwrap()).unwrap()
+        )
     }
 }
 
@@ -22,9 +26,17 @@ impl std::fmt::Debug for X509 {
         f.debug_struct("X509")
             .field(
                 "pem",
-                &String::from_utf8(self.certificate.to_pem().unwrap()).unwrap().replace("\n", "")
+                &String::from_utf8(self.certificate.to_pem().unwrap())
+                    .unwrap()
+                    .replace("\n", ""),
             )
-            .field("der", &format!("DER-encoded X.509 certificate with length {}", self.der.len()))
+            .field(
+                "der",
+                &format!(
+                    "DER-encoded X.509 certificate with length {}",
+                    self.der.len()
+                ),
+            )
             .finish()
     }
 }

@@ -9,9 +9,9 @@ use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, Registry
 #[tokio::main]
 async fn main() -> anyhow::Result<(), AppError> {
 
-    //let level_filter = tracing_subscriber::filter::LevelFilter::INFO;
-    //tracing_subscriber::registry().with(ForestLayer::default()).with(level_filter).init();
-    tracing_subscriber::registry().with(ForestLayer::default()).init(); 
+    let level_filter = tracing_subscriber::filter::LevelFilter::INFO;
+    tracing_subscriber::registry().with(ForestLayer::default()).with(level_filter).init();
+    //tracing_subscriber::registry().with(ForestLayer::default()).init(); 
 
     let cli = cli::parse_args();
     let config = cli::get_config()?;

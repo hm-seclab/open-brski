@@ -22,13 +22,6 @@ pub mod verified;
 
 pub mod agent_signed_data;
 
-#[cfg(feature = "openssl")]
-pub mod cms_signed_request;
-#[cfg(feature = "openssl")]
-pub mod cms_signed_voucher;
-
-#[cfg(feature = "openssl")]
-mod cms;
 mod util;
 pub use util::pki;
 

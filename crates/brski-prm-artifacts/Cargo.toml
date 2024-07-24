@@ -14,26 +14,27 @@ readme = "README.md"
 [features]
 default = ["chrono/now", "openssl", "json", "axum"]
 
-clock = ["chrono/now"]
-openssl = ["dep:openssl"]
-json = ["serde_json", "josekit"]
-axm = ["axum"]
+clock = ["chrono/now", "ietf-voucher/clock"]
+openssl = ["dep:openssl", "openssl/vendored", "ietf-voucher/openssl"]
+json = ["dep:serde_json", "dep:josekit", "ietf-voucher/jws"]
+axum = ["dep:axum"]
 
 [dependencies]
 serde = { version = "1.0.197", features = ["derive"] }
 openssl = {version = "0.10.64", optional = true}
-openssl-sys = "0.9.102"
 
 chrono = { version = "0.4.37", features = ["serde", "now"] }
 serde_json = {version = "1.0.115", optional = true}
 strum = { version = "0.26.2", features = ["derive"] }
 thiserror = "1.0.58"
 serde_with = { version = "3.8.1", features = ["base64"] }
-josekit = {version = "0.8.6", optional = true}
-ietf-voucher.workspace = true
+josekit = { version = "0.8.6", optional = true }
+# ietf-voucher = { workspace = true, default-features = false } <-- this doesn't work
+ietf-voucher = { path = "../ietf-voucher", default-features = false}
 base64 = "0.22.1"
 anyhow = "1.0"
 axum = { version = "0.7.5", features = ["macros"], optional = true}
+tracing = "0.1.40"
 
 [dev-dependencies]
-example-certs = { path = "../example-certs", features = ["openssl"] }
+example-certs = { path = "../example-certs" }

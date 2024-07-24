@@ -23,3 +23,7 @@ pub use forward_cacerts::send_cacerts_to_pledge;
 pub use forward_enroll_response::send_enroll_response_to_pledge;
 pub use forward_voucher_status::send_voucher_status_to_registrar;
 pub use forward_enroll_status::send_enroll_status_to_registrar;
+
+// bridge
+pub use trigger_pvr::get_pvr_trigger;
+pub use trigger_per::get_per_trigger;

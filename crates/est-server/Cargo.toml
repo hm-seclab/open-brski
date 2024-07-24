@@ -9,4 +9,3 @@ edition.workspace = true
 anyhow.workspace = true
 axum.workspace = true
 openssl.workspace = true 
-openssl-sys.workspace = true

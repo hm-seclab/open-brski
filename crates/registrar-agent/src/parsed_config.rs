@@ -6,11 +6,11 @@ use openssl::pkey::{Private};
 use openssl::x509::X509;
 
 #[derive(Clone, Debug)]
-pub(crate) struct ParsedConfig {
-    pub(crate) config: RegistrarAgentConfig,
-    pub(crate) ee_certificate: X509,
-    pub(crate) ee_key: EcKey<Private>,
-    pub(crate) registrar_certificate: X509,
+pub struct ParsedConfig {
+    pub config: RegistrarAgentConfig,
+    pub ee_certificate: X509,
+    pub ee_key: EcKey<Private>,
+    pub registrar_certificate: X509,
 }
 
 pub(crate) fn parse_config(config: RegistrarAgentConfig) -> anyhow::Result<ParsedConfig, AppError> {

@@ -1,5 +1,4 @@
 use ietf_voucher::pki::X509Req;
-use openssl::pkey::Private;
 use serde::{Deserialize, Serialize};
 use serde_with::base64::Base64;
 use serde_with::serde_as;
@@ -18,9 +17,10 @@ pub struct ResponsePayloadInner {
     pub p10_csr: X509Req,
 }
 
+#[cfg(feature = "openssl")]
 impl ResponsePayload {
     pub fn try_new(
-        keypair: &openssl::pkey::PKey<Private>,
+        keypair: &openssl::pkey::PKey<openssl::pkey::Private>,
     ) -> Result<ResponsePayload, openssl::error::ErrorStack> {
         let mut cert_req = openssl::x509::X509Req::builder()?;
         cert_req.set_pubkey(keypair).unwrap();

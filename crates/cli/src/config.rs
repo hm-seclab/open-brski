@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use serde::{Deserialize, Serialize};
 
 use crate::cli::{Cli, OperatingMode};
@@ -13,7 +15,7 @@ pub use crate::registrar_config::RegistrarConfig;
 use crate::validate::Validate;
 use crate::Command;
 
-#[derive(Serialize, Deserialize, Default)]
+#[derive(Serialize, Deserialize, Default, Debug)]
 pub struct Config {
     pub registrar: RegistrarConfig,
     pub masa: MasaConfig,

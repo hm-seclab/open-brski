@@ -3,10 +3,7 @@ name = "example-certs"
 version.workspace = true
 edition.workspace = true
 
-[features]
-openssl = ["dep:openssl"]
-
 [dependencies]
 rcgen = { version = "0.13.1", features = ["crypto"] }
 time = "0.3.36"
-openssl = {version = "0.10.64", optional = true}
+openssl.workspace = true

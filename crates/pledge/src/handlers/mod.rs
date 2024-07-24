@@ -6,7 +6,6 @@ mod ser;
 mod qps;
 use axum::{routing::post, Router};
 
-use crate::parsed_config::ParsedConfig;
 use crate::server::ServerState;
 
 #[tracing::instrument(target = "Pledge")]

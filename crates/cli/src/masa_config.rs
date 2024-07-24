@@ -64,7 +64,7 @@ impl Default for MasaConfig {
     }
 }
 
-#[derive(Args, Serialize, Deserialize)]
+#[derive(Args, Serialize, Deserialize, Debug)]
 pub struct NullableMasaConfig {
     #[arg(short, long)]
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -35,6 +35,7 @@ impl<'a> TriggerOptions<'a> {
     }
 }
 
+#[cfg(feature = "openssl")]
 impl TryFrom<TriggerOptions<'_>> for Trigger {
     type Error = BRSKIPRMError;
 
@@ -45,7 +46,7 @@ impl TryFrom<TriggerOptions<'_>> for Trigger {
 
         let encoded_data = value
             .agent_signed_data
-            .encode(skid_str, value.private_key)
+            .sign(skid_str, value.private_key)
             .map_err(|e| BRSKIPRMError::Malformed(e.to_string()))?;
 
         Ok(Self {
@@ -158,12 +159,12 @@ mod tests {
 
         let decoded_agent_signed_data = pvr
             .agent_signed_data
-            .decode(pubk.public_key_to_der().unwrap())
+            .verify(pubk.public_key_to_der().unwrap())
             .unwrap();
-        assert!(decoded_agent_signed_data.is_decoded());
+        assert!(decoded_agent_signed_data.is_unsigned());
 
         let inner_data = match decoded_agent_signed_data {
-            AgentSignedData::Decoded(d) => d,
+            AgentSignedData::Unsigned(d) => d,
             _ => panic!("Expected decoded data"),
         };
 

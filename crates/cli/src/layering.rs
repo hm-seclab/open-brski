@@ -17,7 +17,15 @@ pub fn get_layered_configs() -> anyhow::Result<Config> {
 
 fn get_layered_configs_from_cli_config(cli_config: Option<Cli>) -> anyhow::Result<Config> {
     let defaults = Figment::from(Serialized::defaults(Config::default()));
-    let config_file = Figment::from(Toml::file("Config.toml"));
+    let config_file = {
+        // test if file exists in /etc/open-brski/conf
+        if std::path::Path::exists(std::path::Path::new("/etc/open-brski/conf/Config.toml")) {
+            Figment::from(Toml::file("/etc/open-brski/conf/Config.toml"))
+        } else {
+            Figment::from(Toml::file("Config.toml"))
+        }
+       
+    };
 
     let mut merged_config = defaults.merge(config_file);
     if let Some(cli) = cli_config {
