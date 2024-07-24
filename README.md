@@ -135,6 +135,7 @@ It handles `brski` related functions with an FFI layer from the `registrar-agent
 - Pledge verification of received artifacts is WIP
 - A real pledge implementation based on the ESP32-S3 is WIP
 - Pledge discovery is only simulated and not implemented over mDNS
+- The pledge currently does not request `Certificate Attributes` from the proper source. 
 
 ##### General
 - The JWS implementation is unfortunately not up to standard. There are a number of JWS/Jose/Jsonwebtoken libaries in the Rust ecosystem, all with their respective tradeoffs
