@@ -109,13 +109,18 @@ The pledge is a simulated "device" that installs these artifacts into a trust-st
 
 #### Currently unsupported features and missings
 
+##### MASA
+
 - MASA URI in Pledge idevid certificate is not supported. The MASA uri needs to be set in the configuration file.
 - The MASA does not verify the validity of the RVR in order to generate a voucher. This seems to be ok to do as per the reference implementation, but validation is a must have feature in the future.
+
+##### Pledge 
 - Pledge verification of received artifacts is WIP
-- The JWS implementation is unfortunately not up to standard. There are a number of JWS/Jose/Jsonwebtoken libaries in the Rust ecosystem, all with their respective tradeoffs
-- Currently, this library depends on OpenSSL. I would love to replace this with ring in the future.
-- There is a severe lack of documentation
 - A real pledge implementation based on the ESP32-S3 is WIP
 - Pledge discovery is only simulated and not implemented over mDNS
+
+##### General
+- The JWS implementation is unfortunately not up to standard. There are a number of JWS/Jose/Jsonwebtoken libaries in the Rust ecosystem, all with their respective tradeoffs
+- Currently, this library depends on OpenSSL. I would love to replace this with ring in the 
 - This library does currently not support communication over TLS.
-- Each client currently does not verify that the given private key fits the certificate's public key before starting.
+- Each client currently does not not yet verify that the given private key fits the certificate's public key before starting.
