@@ -1,4 +1,4 @@
-<img src="openbrski-logo.png" width="48" alt="Open BRSKI Logo; A Lock Icon with multiple connecting lines extending from each vertical plane">
+<img src="openbrski-logo.png" width="380" alt="Open BRSKI Logo; A Lock Icon with multiple connecting lines extending from each vertical plane">
 
 ### BRSKI(-PRM) Example Implementation
 
