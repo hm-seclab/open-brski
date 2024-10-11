@@ -1,9 +1,0 @@
-[package]
-name = "example-certs"
-version.workspace = true
-edition.workspace = true
-
-[dependencies]
-rcgen = { version = "0.13.1", features = ["crypto"] }
-time = "0.3.36"
-openssl.workspace = true

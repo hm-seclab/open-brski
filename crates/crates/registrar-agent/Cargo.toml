@@ -1,0 +1,29 @@
+[package]
+name = "registrar-agent"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+openssl = ["dep:openssl"]
+
+[dependencies]
+common.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+reqwest.workspace = true
+cli.workspace = true
+brski-prm-artifacts.workspace = true 
+chrono.workspace = true
+axum.workspace = true
+tracing.workspace = true
+tower-http.workspace = true
+dyn-clone.workspace = true
+async-trait.workspace = true
+serde_json.workspace = true
+signeable-payload.workspace = true
+base64.workspace = true
+pledge-lib.workspace = true
+openssl = { workspace = true, optional = true }
+ciborium.workspace = true

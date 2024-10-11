@@ -1,0 +1,30 @@
+[package]
+name = "brski-prm-artifacts"
+version.workspace = true
+edition.workspace = true
+license = "MIT"
+keywords = ["brski-prm", "voucher-artifact", "authentication"]
+categories = ["authentication"]
+homepage = ""
+repository = ""
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+clock = ["chrono/now", "ietf-voucher/clock"]
+json = ["serde_with"]
+
+[dependencies]
+serde = { version = "1.0.197", features = ["derive"] }
+chrono = { version = "0.4.37", features = ["serde", "now"] }
+strum = { version = "0.26.2", features = ["derive"] }
+thiserror = "1.0.58"
+serde_with = { version = "3.8.1", features = ["base64"], optional = true}
+ietf-voucher.workspace = true
+anyhow = "1.0"
+tracing = "0.1.40"
+signeable-payload.workspace = true
+base64 = "0.22.1"
+[dev-dependencies]
+example-certs = { path = "../example-certs" }

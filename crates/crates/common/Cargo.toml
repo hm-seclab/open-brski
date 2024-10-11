@@ -1,0 +1,26 @@
+[package]
+name = "common"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+jws = ["dep:josekit"]
+openssl = ["dep:openssl"]
+
+[dependencies]
+anyhow.workspace = true
+
+hyper.workspace = true
+serde.workspace = true
+serde_bytes.workspace = true
+josekit = {workspace = true, optional = true }
+thiserror.workspace = true
+openssl = {workspace = true, optional = true }
+axum.workspace = true
+brski-prm-artifacts.workspace = true
+reqwest.workspace = true
+tracing.workspace = true
+serde_json.workspace = true
+signeable-payload.workspace = true

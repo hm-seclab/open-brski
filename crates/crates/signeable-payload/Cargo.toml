@@ -1,0 +1,41 @@
+[package]
+name = "signeable-payload"
+version.workspace = true
+edition.workspace = true
+license = "MIT"
+categories = ["authentication"]
+homepage = ""
+repository = ""
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+
+cose = ["ciborium", "coset", "ring"]
+jws = ["dep:josekit", "openssl"]
+openssl = ["dep:openssl"]
+axum = ["dep:axum"]
+
+[dependencies]
+serde = { version = "1.0.197", features = ["derive"] }
+openssl = {version = "0.10.64", features = ["vendored"], optional = true}
+
+chrono = { version = "0.4.37", features = ["serde", "now"] }
+serde_json = {version = "1.0.115"}
+strum = { version = "0.26.2", features = ["derive"] }
+thiserror = "1.0.58"
+josekit = { version = "0.8.6", optional = true}
+ciborium = { version = "0.2.2", optional = true }
+coset = { version = "0.3.7", optional = true }
+tracing.workspace = true
+anyhow.workspace = true
+ring = {workspace = true, optional = true}
+base64 = "0.22.1"
+regex = "1.10.5"
+axum = { workspace = true, optional = true}
+dyn-clone = "1.0.17"
+x509-cert = "0.2.5"
+
+[dev-dependencies]
+example-certs = { path = "../example-certs" }

@@ -6,10 +6,14 @@
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < Box < dyn Fn (String , PledgeCtx) -> DartFnFuture < String > + Sync + Send > >>>
-abstract class ArcBoxFnStringPledgeCtxDartFnFutureString
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < Box < dyn Fn (DiscoveredPledge) -> DartFnFuture < String > + Sync + Send > >>>
+abstract class ArcBoxFnDiscoveredPledgeDartFnFutureString
     implements RustOpaqueInterface {}
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < Box < dyn Fn (Vec < u8 > , PledgeCtx) -> DartFnFuture < String > + Sync + Send > >>>
-abstract class ArcBoxFnVecU8PledgeCtxDartFnFutureString
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < Box < dyn Fn (DiscoveredPledge , DataInterchangeFormat) -> DartFnFuture < Vec < u8 > > + Sync + Send > >>>
+abstract class ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+    implements RustOpaqueInterface {}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < Box < dyn Fn (Vec < u8 > , PledgeCtx) -> DartFnFuture < Vec < u8 > > + Sync + Send > >>>
+abstract class ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
     implements RustOpaqueInterface {}

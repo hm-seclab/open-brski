@@ -1,0 +1,32 @@
+[package]
+name = "pledge"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+openssl = ["dep:openssl"]
+
+[dependencies]
+tokio.workspace = true
+anyhow.workspace = true
+serde.workspace = true 
+serde_bytes.workspace = true
+common.workspace = true
+brski-prm-artifacts.workspace = true 
+chrono.workspace = true
+cli.workspace = true
+axum.workspace = true
+tracing.workspace = true
+tower-http.workspace = true
+pledge-lib.workspace = true
+signeable-payload.workspace = true
+tower.workspace = true
+rand.workspace = true 
+ciborium.workspace = true
+openssl = { workspace = true, optional = true }
+serde_json.workspace = true
+
+[dev-dependencies]
+example-certs.workspace = true
+

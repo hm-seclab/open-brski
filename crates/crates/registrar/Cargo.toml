@@ -1,0 +1,24 @@
+[package]
+name = "registrar"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+openssl = ["dep:openssl"]
+
+[dependencies]
+common.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+reqwest.workspace = true
+cli.workspace = true
+brski-prm-artifacts.workspace = true 
+axum.workspace = true
+chrono.workspace = true
+tracing.workspace = true
+tower-http.workspace = true
+serde_json.workspace = true
+signeable-payload.workspace = true
+x509-cert.workspace = true
+openssl = { workspace = true, optional = true }

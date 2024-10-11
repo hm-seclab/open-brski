@@ -6,6 +6,8 @@ edition = "2021"
 resolver = "2"
 rust-version = "1.77"
 
+[workspace]
+
 [[bin]]
 name = "esp32"
 harness = false # do not use the built in cargo test harness -> resolve rust-analyzer errors
@@ -20,7 +22,6 @@ opt-level = "z"
 [features]
 default = ["std", "embassy", "esp-idf-svc/native"]
 
-pio = ["esp-idf-svc/pio"]
 std = ["alloc", "esp-idf-svc/binstart", "esp-idf-svc/std"]
 alloc = ["esp-idf-svc/alloc"]
 nightly = ["esp-idf-svc/nightly"]
@@ -38,6 +39,7 @@ mio = { version = "1.0.0", features = ["log"] }
 tokio = { version = "1.38.0", features = ["rt", "net", "io-util"] }
 esp32-nimble = {git = "https://github.com/taks/esp32-nimble", branch = "main"}
 ietf-voucher = { path = "../crates/ietf-voucher", default-features = false }
+signeable-payload ={ path = "../crates/signeable-payload", default-features = false, features = ["cose"]}
 brski-prm-artifacts = { path = "../crates/brski-prm-artifacts", default-features = false }
 pledge-lib ={ path = "../crates/pledge-lib", default-features = false, features = ["clock"]}
 consts = { path = "../crates/consts" }
@@ -49,9 +51,10 @@ data-encoding = "2.6.0"
 once_cell = "1.19.0"
 num-bigint = "0.4.6"
 num-traits = "0.2.19"
+ciborium = "0.2.2"
 
 [target.'cfg(target_os="espidf")'.dependencies]
-ring = { git = "https://github.com/juliankrieger/ring", features = ["less-safe-getrandom-espidf"]  }
+ring = { git = "https://github.com/briansmith/ring", features = ["less-safe-getrandom-espidf"]  }
 
 [patch.crates-io]
 mio = { git = "https://github.com/tokio-rs/mio", branch = "master" }

@@ -24,16 +24,28 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   });
 
   CrossPlatformFinalizerArg
-      get rust_arc_decrement_strong_count_ArcBoxFnStringPledgeCtxDartFnFutureStringPtr =>
-          wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSendPtr;
+      get rust_arc_decrement_strong_count_ArcBoxFnDiscoveredPledgeDartFnFutureStringPtr =>
+          wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSendPtr;
 
   CrossPlatformFinalizerArg
-      get rust_arc_decrement_strong_count_ArcBoxFnVecU8PledgeCtxDartFnFutureStringPtr =>
-          wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSendPtr;
+      get rust_arc_decrement_strong_count_ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8Ptr =>
+          wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSendPtr;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8Ptr =>
+          wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSendPtr;
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_BootstrapperPtr => wire
           ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapperPtr;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_DataInterchangeFormatPtr => wire
+          ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormatPtr;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_DiscoveredPledgePtr => wire
+          ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledgePtr;
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_FfibleCommunicatorPtr => wire
@@ -50,18 +62,33 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   AnyhowException dco_decode_AnyhowException(dynamic raw);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           dynamic raw);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          dynamic raw);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           dynamic raw);
 
   @protected
   Bootstrapper
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper(
+          dynamic raw);
+
+  @protected
+  DataInterchangeFormat
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+          dynamic raw);
+
+  @protected
+  DiscoveredPledge
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
           dynamic raw);
 
   @protected
@@ -80,31 +107,51 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
-  FutureOr<String> Function(String, PledgeCtx)
-      dco_decode_DartFn_Inputs_String_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPledgeCtx_Output_String_AnyhowException(
+  FutureOr<Uint8List> Function(DiscoveredPledge, DataInterchangeFormat)
+      dco_decode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat_Output_list_prim_u_8_strict_AnyhowException(
           dynamic raw);
 
   @protected
-  FutureOr<String> Function(Uint8List, PledgeCtx)
-      dco_decode_DartFn_Inputs_list_prim_u_8_strict_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPledgeCtx_Output_String_AnyhowException(
+  FutureOr<String> Function(DiscoveredPledge)
+      dco_decode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge_Output_String_AnyhowException(
+          dynamic raw);
+
+  @protected
+  FutureOr<Uint8List> Function(Uint8List, PledgeCtx)
+      dco_decode_DartFn_Inputs_list_prim_u_8_strict_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPledgeCtx_Output_list_prim_u_8_strict_AnyhowException(
           dynamic raw);
 
   @protected
   Object dco_decode_DartOpaque(dynamic raw);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           dynamic raw);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          dynamic raw);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           dynamic raw);
 
   @protected
   Bootstrapper
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper(
+          dynamic raw);
+
+  @protected
+  DataInterchangeFormat
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+          dynamic raw);
+
+  @protected
+  DiscoveredPledge
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
           dynamic raw);
 
   @protected
@@ -132,13 +179,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   BleIdentifiers dco_decode_ble_identifiers(dynamic raw);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString
-      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           dynamic raw);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString
-      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          dynamic raw);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           dynamic raw);
 
   @protected
@@ -161,13 +213,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString?
-      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           dynamic raw);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString?
-      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          dynamic raw);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           dynamic raw);
 
   @protected
@@ -183,18 +240,33 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          SseDeserializer deserializer);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           SseDeserializer deserializer);
 
   @protected
   Bootstrapper
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper(
+          SseDeserializer deserializer);
+
+  @protected
+  DataInterchangeFormat
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+          SseDeserializer deserializer);
+
+  @protected
+  DiscoveredPledge
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
           SseDeserializer deserializer);
 
   @protected
@@ -216,18 +288,33 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Object sse_decode_DartOpaque(SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          SseDeserializer deserializer);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           SseDeserializer deserializer);
 
   @protected
   Bootstrapper
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper(
+          SseDeserializer deserializer);
+
+  @protected
+  DataInterchangeFormat
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+          SseDeserializer deserializer);
+
+  @protected
+  DiscoveredPledge
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
           SseDeserializer deserializer);
 
   @protected
@@ -256,13 +343,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   BleIdentifiers sse_decode_ble_identifiers(SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString
-      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString
-      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          SseDeserializer deserializer);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           SseDeserializer deserializer);
 
   @protected
@@ -287,13 +379,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnStringPledgeCtxDartFnFutureString?
-      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDartFnFutureString?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
           SseDeserializer deserializer);
 
   @protected
-  ArcBoxFnVecU8PledgeCtxDartFnFutureString?
-      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+  ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          SseDeserializer deserializer);
+
+  @protected
+  ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
           SseDeserializer deserializer);
 
   @protected
@@ -317,20 +414,36 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnStringPledgeCtxDartFnFutureString self,
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
+          ArcBoxFnDiscoveredPledgeDartFnFutureString self,
           SseSerializer serializer);
 
   @protected
   void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnVecU8PledgeCtxDartFnFutureString self,
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8 self,
+          SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+          ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8 self,
           SseSerializer serializer);
 
   @protected
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper(
           Bootstrapper self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+          DataInterchangeFormat self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
+          DiscoveredPledge self, SseSerializer serializer);
 
   @protected
   void
@@ -349,14 +462,21 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
-      sse_encode_DartFn_Inputs_String_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPledgeCtx_Output_String_AnyhowException(
-          FutureOr<String> Function(String, PledgeCtx) self,
+      sse_encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat_Output_list_prim_u_8_strict_AnyhowException(
+          FutureOr<Uint8List> Function(DiscoveredPledge, DataInterchangeFormat)
+              self,
           SseSerializer serializer);
 
   @protected
   void
-      sse_encode_DartFn_Inputs_list_prim_u_8_strict_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPledgeCtx_Output_String_AnyhowException(
-          FutureOr<String> Function(Uint8List, PledgeCtx) self,
+      sse_encode_DartFn_Inputs_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge_Output_String_AnyhowException(
+          FutureOr<String> Function(DiscoveredPledge) self,
+          SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_DartFn_Inputs_list_prim_u_8_strict_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPledgeCtx_Output_list_prim_u_8_strict_AnyhowException(
+          FutureOr<Uint8List> Function(Uint8List, PledgeCtx) self,
           SseSerializer serializer);
 
   @protected
@@ -364,20 +484,36 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnStringPledgeCtxDartFnFutureString self,
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
+          ArcBoxFnDiscoveredPledgeDartFnFutureString self,
           SseSerializer serializer);
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnVecU8PledgeCtxDartFnFutureString self,
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8 self,
+          SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+          ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8 self,
           SseSerializer serializer);
 
   @protected
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper(
           Bootstrapper self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+          DataInterchangeFormat self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
+          DiscoveredPledge self, SseSerializer serializer);
 
   @protected
   void
@@ -407,14 +543,20 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
-      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnStringPledgeCtxDartFnFutureString self,
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
+          ArcBoxFnDiscoveredPledgeDartFnFutureString self,
           SseSerializer serializer);
 
   @protected
   void
-      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnVecU8PledgeCtxDartFnFutureString self,
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8 self,
+          SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+          ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8 self,
           SseSerializer serializer);
 
   @protected
@@ -442,14 +584,20 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
-      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnStringPledgeCtxDartFnFutureString? self,
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
+          ArcBoxFnDiscoveredPledgeDartFnFutureString? self,
           SseSerializer serializer);
 
   @protected
   void
-      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
-          ArcBoxFnVecU8PledgeCtxDartFnFutureString? self,
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
+          ArcBoxFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecU8? self,
+          SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+          ArcBoxFnVecU8PledgeCtxDartFnFutureVecU8? self,
           SseSerializer serializer);
 
   @protected
@@ -483,67 +631,99 @@ class RustLibWire implements BaseWire {
       : _lookup = dynamicLibrary.lookup;
 
   void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
     ffi.Pointer<ffi.Void> ptr,
   ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
       ptr,
     );
   }
 
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSendPtr =
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSendPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend');
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSendPtr
+          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend');
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSendPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
     ffi.Pointer<ffi.Void> ptr,
   ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend(
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend(
       ptr,
     );
   }
 
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSendPtr =
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSendPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend');
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSend =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnStringPledgeCtxDartFnFutureStringSyncSendPtr
+          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend');
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSend =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDartFnFutureStringSyncSendPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
     ffi.Pointer<ffi.Void> ptr,
   ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
       ptr,
     );
   }
 
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSendPtr =
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSendPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend');
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSendPtr
+          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend');
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSendPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
     ffi.Pointer<ffi.Void> ptr,
   ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend(
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend(
       ptr,
     );
   }
 
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSendPtr =
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSendPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend');
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSend =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureStringSyncSendPtr
+          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend');
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSend =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnDiscoveredPledgeDataInterchangeFormatDartFnFutureVecu8SyncSendPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSendPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend');
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSendPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSendPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend');
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSend =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcBoxdynFnVecu8PledgeCtxDartFnFutureVecu8SyncSendPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
@@ -576,6 +756,70 @@ class RustLibWire implements BaseWire {
           'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper');
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapper =
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBootstrapperPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormatPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat');
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormatPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormatPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat');
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormat =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDataInterchangeFormatPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledgePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_flutter_app_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge');
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledgePtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledgePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'frbgen_flutter_app_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge');
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledge =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDiscoveredPledgePtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void

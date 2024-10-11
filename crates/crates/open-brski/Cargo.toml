@@ -1,0 +1,38 @@
+[package]
+name = "open-brski"
+version.workspace = true
+edition.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = ["jws", "cose", "openssl", "clock"]
+openssl = ["openssl/vendored", "common/openssl", "ietf-voucher/openssl", "example-certs/openssl", "masa/openssl", "pledge/openssl", "registrar/openssl", "registrar-agent/openssl"]
+jws = ["openssl", "ietf-voucher/json", "signeable-payload/jws", "brski-prm-artifacts/json", "common/jws"]
+clock = ["brski-prm-artifacts/clock", "ietf-voucher/clock", "pledge-lib/clock"]
+cose = ["signeable-payload/cose"]
+
+[dependencies]
+cli.workspace = true
+registrar-agent.workspace = true
+registrar.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+common.workspace = true
+example-certs.workspace = true
+pledge.workspace = true
+masa.workspace = true
+signeable-payload.workspace = true
+ietf-voucher.workspace = true
+brski-prm-artifacts.workspace = true
+pledge-lib.workspace = true
+openssl = { workspace = true, optional = true }
+
+futures = "0.3.30"
+tracing.workspace = true
+tracing-subscriber.workspace = true
+tracing-forest = { version = "0.1.6", features = ["ansi", "tokio"] }
+
+
+[[bin]]
+name = "open-brski"
+path = "src/main.rs"

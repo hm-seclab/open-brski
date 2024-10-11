@@ -3,6 +3,7 @@
 [workspace]
 members = ["crates/*"]
 resolver = "2"
+exclude = ["crates/flutter_bridge"]
 
 [workspace.package]
 version = "0.1.0"
@@ -10,14 +11,18 @@ edition = "2021"
 
 [profile.release]
 incremental = true
+debug = true
+
+[profile.dev]
+debug = true
+
 
 [workspace.dependencies]
 
 tokio = { version = "1.0", features = ["full", "tracing"] }
 anyhow = "1.0"
-axum = { version = "0.7.5", features = ["macros"]}
-openssl = "0.10.64"
-openssl-sys = "0.9.102"
+axum = { version = "0.7.4", features = ["macros"]}
+openssl = { version = "0.10.64", features = ["vendored"]}
 serde = { version = "1.0.197", features = ["derive"] }
 serde_bytes = "0.11.14"
 josekit = "0.8.6"
@@ -25,17 +30,32 @@ tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
 tower-http = { version = "0.5.2", features = ["trace"]}
 reqwest = { version = "0.11.22", features = ["json"] }
-chrono = "0.4.38"
+chrono = "^0.4"
+ring = { git = "https://github.com/briansmith/ring", features = ["less-safe-getrandom-espidf"]  }
+x509-cert ={ git = "https://github.com/RustCrypto/formats", package = "x509-cert", features = ["builder"]}
+p256 = { version = "=0.14.0-pre.2"}
+sha2 = { version = "=0.11.0-pre.4", features = ["oid"] }
+ecdsa = { version = "=0.17.0-pre.9", features = ["digest", "pem"] }
+ciborium = { version = "0.2.2" }
+rand = "0.8.5"
+serde_json = "1.0.117"
+tower = { version = "0.4.13" }
+dyn-clone = "1.0.17"
+async-trait = "0.1.80"
+base64 = "0.22.1"
+hyper = "0.14.27"
+thiserror = "1.0.61"
 
 # Crates
 cli = { path = "./crates/cli" }
-common = { path = "./crates/common" }
+common = { path = "./crates/common"}
 registrar-agent = { path = "./crates/registrar-agent" }
 registrar = { path = "./crates/registrar" }
 example-certs = { path = "./crates/example-certs" }
-ietf-voucher = { path = "./crates/ietf-voucher" }
-brski-prm-artifacts = { path = "./crates/brski-prm-artifacts" }
+ietf-voucher = { path = "./crates/ietf-voucher"}
+brski-prm-artifacts = { path = "./crates/brski-prm-artifacts"}
 pledge = { path = "./crates/pledge" }
-masa ={ path = "./crates/masa" }
+masa = { path = "./crates/masa" }
 consts = { path = "./crates/consts" }
 pledge-lib = { path = "./crates/pledge-lib" }
+signeable-payload = { path = "./crates/signeable-payload", features = ["axum"]}
