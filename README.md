@@ -140,4 +140,4 @@ It handles `brski` related functions with an FFI layer from the `registrar-agent
 - Currently, this library depends on OpenSSL. I would love to replace this with ring in the 
 - This library does currently not support communication over TLS.
 - Each client currently does not not yet verify that the given private key fits the certificate's public key before starting.
-- It's currently only possible to use JWS payloads. Support for CBOR/COSE is being worked on.
+- The Pledge currently only really supports CBOR/COSE payloads. Using JWS is possible, but experimental.
