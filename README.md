@@ -113,13 +113,9 @@ The pledge is a simulated "device" that installs these artifacts into a trust-st
 
 A WIP Pledge based on the ESP32 XTENSA/RISC-V architectures can be found in the `esp32` folder. It's a pure Rust firmware binary that handles communication over a Bluetooth LE channel with the registrar and ingoing/outgoing WiFi traffic based on an asynchronous state machine via `Metal I/O` an `tokio`. It uses `ring` to handle SSL/certificate computing.
 
-The ESP32 demo also uses a bespoke JWS implementatin that has been retrofitted from the `biscuit` crate to handle general-syntax JWS tokens with multiple signatures. 
-
 The `ring` crate had to be fit to work on XTENSA architectures. `WolfSSL` and `mbedTLS` did not have mature enough `x509` handling at the time of writing.
 
-`BRSKI`/`EST` tokens tend to be (much) larger than the maximum MTU (512 bytes) of the ESP32 native bluetooth stack. In order to trade packets anyway, they are parsed into multiple MTU sized frames and rebuilt on the registrar-agent and during the NimBLE runtime. 
-
-Currently, only the `PVR` and `PER` routes are supported.
+`BRSKI`/`EST` tokens tend to be (much) larger than the maximum characteristic length (512 bytes) of the ESP32 native bluetooth stack. In order to trade packets anyway, they are parsed into multiple MTU sized frames and rebuilt on the registrar-agent and during the NimBLE runtime. 
 
 #### WIP Android based Registrar-Agent
 
