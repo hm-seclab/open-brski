@@ -98,6 +98,10 @@ idevid_privkey = "reference_keys/pledge/pledge.key"
 idev_id = "00-D0-E5-F2-00-02"
 ```
 
+### Emulated Useage
+
+It's possible to see the workings of `open-brski` via a simulated IP-based pledge. Use `open-brski all` to start all services. Then trigger the `<registrar-agent-url>/init` endpoint to see the issuing of an example voucher.
+
 #### State of the art
 
 This reference implementation can create a voucher from a peusdo-masa, generate domain specific CA certificates from the registrar and generate a domain-valid LDEVID certificate for the pledge. 
