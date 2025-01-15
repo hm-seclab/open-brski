@@ -1,6 +1,6 @@
 <img src="openbrski-logo.png" width="380" alt="Open BRSKI Logo; A Lock Icon with multiple connecting lines extending from each vertical plane">
 
-### BRSKI(-PRM) Example Implementation
+### cBRSKI-PRM Example Implementation
 
 This repository is intented to hold a BRSKI/[RFC 8995](https://datatracker.ietf.org/doc/rfc8995/) and [BRSKI-PRM](https://datatracker.ietf.org/doc/draft-ietf-anima-brski-prm/) example implementation.
 
